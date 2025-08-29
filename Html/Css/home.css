@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  background-color: #7a7073; 
+  padding: 10px;
+  box-sizing: border-box;
+  border-right: 2px solid #5f5658;
+}
+
+.item {
+  padding: 20px 10px;
+  border-bottom: 1px solid #5f5658;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modo {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #5f5658;
+  font-size: 14px;
+}
+
+.modo div {
+  margin: 8px 0;
+}
+
+.cuadro {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-left: 10px;
+  border: 1px solid #000;
+}
+
+.oscuro {
+  background-color: #333;
+}
+
+.claro {
+  background-color: #fff;
+}
+
+.contenido {
+  flex: 1;
+  background-image: url("../img/bandas.jpg");
+  background-size: cover;
+  background-position: center;
+}
