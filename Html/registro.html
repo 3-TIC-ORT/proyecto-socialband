@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Registrarse - Social Band</title>
-  <link rel="stylesheet" href="css/form.css">
+  <link rel="stylesheet" href="css/form.css" />
 </head>
 <body>
   <div class="formulario">
     <h2>Registrarse</h2>
-    <form action="login.html" id= "registro" method="post">
-      <input type="text" id="nombre"  placeholder="Nombre de usuario" required>
-      <input type="email" id= "email" placeholder="Correo" required>
-      <input type="password" id= "contraseña" placeholder="Contraseña" required>
-      <input type="password" id="repcontraseña" placeholder="Repite contraseña" required>
+    <form action="login.html" id="registro" method="post">
+      <input type="text" id="nombre" placeholder="Nombre de usuario" required />
+      <input type="email" id="email" placeholder="Correo" required />
+      <input type="password" id="contraseña" placeholder="Contraseña" required />
+      <input type="password" id="repcontraseña" placeholder="Repite contraseña" required />
+      <input type="number" id="edad" placeholder="Edad" required />
+      <input type="text" id="instrumento" placeholder="Instrumento" required />
+      <input type="text" id="genero" placeholder="Género musical" required />
       <button type="submit">Crear cuenta</button>
     </form>
     <p><a href="login.html">¿Ya tenés cuenta? Iniciá Sesión</a></p>
-  </div> 
+  </div>
   <p id="respuesta"></p>
   <script type="module" src="./frontend.js"></script>
 </body>

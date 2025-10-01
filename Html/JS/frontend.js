@@ -1,5 +1,6 @@
 import fs from "fs"
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
+
 const form = document.getElementById("registro");
 const respuesta = document.getElementById("respuesta");
 
@@ -8,17 +9,29 @@ form.addEventListener("submit", (e) => {
 
   const nombre = document.getElementById("nombre").value;
   const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const contraseña = document.getElementById("contraseña").value;
+  const repcontraseña = document.getElementById("repcontraseña").value;
+  const edad = document.getElementById("edad").value;
+  const instrumento = document.getElementById("instrumento").value;
+  const genero = document.getElementById("genero").value;
+
+  if (contraseña !== repcontraseña) {
+    respuesta.innerText = "Las contraseñas no coinciden.";
+    return;
+  }
 
   const data = {
     nombre,
     email,
-    password,
+    contraseña,
+    edad,
+    instrumento,
+    genero,
   };
 
   postEvent("registroUsuario", data, (respuestaServidor) => {
     respuesta.innerText = respuestaServidor.msg;
   });
 
-  form.reset(); 
+  form.reset();
 });
