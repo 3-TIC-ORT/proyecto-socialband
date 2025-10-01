@@ -1,7 +1,5 @@
 import fs from "fs"
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
-import fs from "fs";
-import { subscribePOSTEvent, startServer } from "soquetic";
 
 const usuariosFile = "./usuarios.json";
 
@@ -15,24 +13,27 @@ function guardarUsuarios(usuarios) {
 }
 
 subscribePOSTEvent("registroUsuario", (data) => {
-  console.log("Datos recibidos del registro:", data);
-
   const usuarios = leerUsuarios();
 
-  usuarios.push({
-    nombre: data.nombre,
-    email: data.email,
-    contraseña: data.contraseña,
-    edad: data.edad,
-    instrumento: data.instrumento,
-    genero: data.genero,
-  });
+  if (usuarios.find(u => u.email === data.email)) {
+    return { msg: "Correo ya registrado.", exito: false };
+  }
 
+  usuarios.push(data);
   guardarUsuarios(usuarios);
 
-  return {
-    msg: `Usuario ${data.nombre} registrado correctamente.`,
-  };
+  return { msg: `Usuario ${data.nombre} registrado.`, exito: true };
+});
+
+subscribePOSTEvent("loginUsuario", (data) => {
+  const usuarios = leerUsuarios();
+
+  const user = usuarios.find(u => u.email === data.email && u.contraseña === data.password);
+
+  if (user) {
+    return { msg: `Bienvenido ${user.nombre}`, exito: true };
+  }
+  return { msg: "Correo o contraseña incorrectos.", exito: false };
 });
 
 startServer(3000);
