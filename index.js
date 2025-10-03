@@ -1,15 +1,14 @@
 import fs from "fs"
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 
-const usuariosFile = "./usuarios.json";
 // Registro
 function leerUsuarios() {
-  const data = fs.readFileSync(usuariosFile, "utf-8");
+  const data = fs.readFileSync("./usuarios.json", "utf-8");
   return JSON.parse(data);
 }
 
 function guardarUsuarios(usuarios) {
-  fs.writeFileSync(usuariosFile, JSON.stringify(usuarios, null, 2));
+  fs.writeFileSync("./usuarios.json", JSON.stringify(usuarios, null, 2));
 }
 
 subscribePOSTEvent("registroUsuario", (data) => {
