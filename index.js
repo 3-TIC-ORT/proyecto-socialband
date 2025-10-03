@@ -2,7 +2,7 @@ import fs from "fs"
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 
 const usuariosFile = "./usuarios.json";
-
+// Registro
 function leerUsuarios() {
   const data = fs.readFileSync(usuariosFile, "utf-8");
   return JSON.parse(data);
@@ -24,6 +24,8 @@ subscribePOSTEvent("registroUsuario", (data) => {
 
   return { msg: `Usuario ${data.nombre} registrado.`, exito: true };
 });
+
+// Inicio de sesión
 
 subscribePOSTEvent("loginUsuario", (data) => {
   const usuarios = leerUsuarios();
