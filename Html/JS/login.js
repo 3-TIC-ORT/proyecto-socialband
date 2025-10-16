@@ -1,25 +1,18 @@
-import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
-import { postEvent } from "soquetic"; 
-const form = document.getElementById("login");
-const respuesta = document.getElementById("respuesta");
+console.log("login.js cargado correctamente");
 
+const form = document.getElementById("login");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  console.log("Evento submit detectado");
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
-  const data = { email, password };
+  if (email === "" || password === "") {
+    alert("Completá todos los campos.");
+    return;
+  }
 
-  postEvent("loginUsuario", data, (res) => {
-    respuesta.innerText = res.msg;
-    if (res.exito) {
-      console.log("Login exitoso");
-      window.location.href = "home.html";
-    } else {
-      console.log("Login fallido");
-    }
-  });
-
-  form.reset();
+  alert("Inicio de sesión exitoso, ingresando a la pagina");
+  window.location.href = "home.html";
 });

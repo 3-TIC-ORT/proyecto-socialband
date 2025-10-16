@@ -1,12 +1,11 @@
-const inputBuscar = document.getElementById("buscar");
-const botonBuscar = document.getElementById("boton-buscar");
-const resultado = document.getElementById("resultado");
+const botonBuscar = document.querySelector('input[type="submit"]');
+const inputBuscar = document.getElementById('buscar');
 
-botonBuscar.addEventListener("click", function() {
-  const texto = inputBuscar.value;
-  if (texto === "") {
-    resultado.textContent = "no escribiste nada.";
+botonBuscar.addEventListener('click', () => {
+  const texto = inputBuscar.value.trim();
+  if (texto === '') {
+    alert('Escribí algo para buscar');
   } else {
-    resultado.textContent = "buscaste: " + texto;
+    alert('Buscaste: ' + texto);
   }
 });
