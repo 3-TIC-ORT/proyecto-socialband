@@ -7,17 +7,20 @@
   <title>Social band</title>
 </head>
 <body>
-  <div>
+  <div id="barra lateral">
     <p>Perfil</p>
     <p>Ajustes</p>
     <p>buscar</p>
+    <label for="buscar">escribi algo para buscar</label><br>
+    <input type="text" id="buscar" name="buscar">
+    <input type="submit" value="buscar">
   </div>
-  <div>
-    <p>Username</p>
-    <img src="Foto de la publicacion.png" alt="Foto de la publicacion">
+  <div id="Publicacion">
+    <p id="usuario">Username</p>
+    <img src="Foto de la publicacion.png" alt="Foto de la publicacion" id="foto">
     <p>Icono de like    Icono de comentario</p>
-    <p>Descripcion</p>
+    <p id="descripcion">Descripcion</p>
   </div> 
-
+<script src="JS/home.js"></script>
 </body>
 </html>
