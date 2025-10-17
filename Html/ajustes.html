@@ -2,21 +2,28 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Ajustes - Social Band</title>
+  <title>ajustes</title>
 </head>
 <body>
   <h1>Ajustes</h1>
+    
+  <div class="modo">
+ <button id="claro">Modo claro</button>
+ <button id="oscuro">Modo oscuro</button>
+ </div>
 
-  <label>
-    <input id="Modo obscuro" type="checkbox" id="modoOscuro">
-    Modo oscuro
-  </label>
-  <br>
+<div class="control">
+ <label for="volumen">Volumen</label>
+ <input type="range" id="volumen" min="0" max="100" value="50">
+</div>
 
-  <label id="Volumen" for="volumen">Volumen:</label>
-  <input id="volumen" type="range" id="volumen" min="0" max="100" value="50">
-  <br>
+<div class="control">
+<label for="brillo">Brillo</label>
+<input type="range" id="brillo" min="0" max="100" value="75">
+</div>
 
-  <a href="Home.html">volver a home</a>
+<a href="home.html"> Volver a inicio</a>
+</div>
+<script src="JS/ajustes.js"></script>
 </body>
 </html>
