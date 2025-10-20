@@ -1,12 +1,11 @@
 console.log("login.js cargado correctamente");
-
-const form = document.getElementById("login");
+let form = document.getElementById("login");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   console.log("Evento submit detectado");
 
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
+  let email = document.getElementById("email").value.trim();
+  let password = document.getElementById("password").value.trim();
 
   if (email === "" || password === "") {
     alert("Completá todos los campos.");

@@ -1,26 +1,26 @@
 import fs from "fs"
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 
-const form = document.getElementById("registro");
-const respuesta = document.getElementById("respuesta");
+let form = document.getElementById("registro");
+let respuesta = document.getElementById("respuesta");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const nombre = document.getElementById("nombre").value;
-  const email = document.getElementById("email").value;
-  const contraseña = document.getElementById("contraseña").value;
-  const repcontraseña = document.getElementById("repcontraseña").value;
-  const edad = document.getElementById("edad").value;
-  const instrumento = document.getElementById("instrumento").value;
-  const genero = document.getElementById("genero").value;
+  let nombre = document.getElementById("nombre").value;
+  let email = document.getElementById("email").value;
+  let contraseña = document.getElementById("contraseña").value;
+  let repcontraseña = document.getElementById("repcontraseña").value;
+  let edad = document.getElementById("edad").value;
+  let instrumento = document.getElementById("instrumento").value;
+  let genero = document.getElementById("genero").value;
 
   if (contraseña !== repcontraseña) {
     respuesta.innerText = "Las contraseñas no coinciden.";
     return;
   }
 
-  const data = {
+  let data = {
     nombre,
     email,
     contraseña,

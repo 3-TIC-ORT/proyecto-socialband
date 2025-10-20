@@ -1,16 +1,39 @@
-const modoClaro = document.getElementById("modoClaro");
-const modoOscuro = document.getElementById("modoOscuro");
-const brillo = document.getElementById("brillo");
+let btnClaro = document.getElementById("claro");
+let btnOscuro = document.getElementById("oscuro");
+let brillo = document.getElementById("brillo");
 
-modoClaro.addEventListener("click", () => {
-document.body.style.backgroundColor = "white";
-document.body.style.color = "black";
+window.addEventListener("DOMContentLoaded", () => {
+  let modo = localStorage.getItem("modo") || "claro";
+  aplicarModo(modo);
+
+  let brilloGuardado = localStorage.getItem("brillo");
+  if (brilloGuardado) {
+    brillo.value = brilloGuardado;
+    document.body.style.filter = `brightness(${brillo.value}%)`;
+  }
 });
-modoOscuro.addEventListener("click", () => {
-document.body.style.backgroundColor = "black";
-document.body.style.color = "white";
-    });
+
+btnClaro.addEventListener("click", () => {
+  localStorage.setItem("modo", "claro");
+  aplicarModo("claro");
+});
+
+btnOscuro.addEventListener("click", () => {
+  localStorage.setItem("modo", "oscuro");
+  aplicarModo("oscuro");
+});
+
 brillo.addEventListener("input", () => {
-let valor = brillo.value / 100;
-document.body.style.filter =`brightness(${valor})`;
-    });        
+  document.body.style.filter = `brightness(${brillo.value}%)`;
+  localStorage.setItem("brillo", brillo.value);
+});
+
+function aplicarModo(modo) {
+  if (modo === "oscuro") {
+    document.body.style.backgroundColor = "#1e1e1e";
+    document.body.style.color = "#ffffff";
+  } else {
+    document.body.style.backgroundColor = "#ffffff";
+    document.body.style.color = "#000000";
+  }
+}
