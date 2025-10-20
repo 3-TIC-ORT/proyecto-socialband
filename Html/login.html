@@ -2,20 +2,18 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Iniciar Sesión - Social Band</title>
-  <link rel="stylesheet" href="css/form.css">
+  <title>Iniciar Sesion</title>
 </head>
 <body>
-  <div class="formulario">
-    <h2>Iniciar Sesión</h2>
-    <form id="login"> 
-      <input type="email" id="email" placeholder="Correo electrónico" required>
-      <input type="password" id="password" placeholder="Contraseña" required>
-      <button type="submit">Entrar</button>
-    </form>
-    <p><a href="registro.html">¿No tenes cuenta? Registrate</a></p>
+  <div>
+    <h2>Iniciar Sesion</h2>
+    <input type="email" id="email" placeholder="Mail">
+    <input type="password" id="password" placeholder="Contraseña">
+    <button id="entrar">Entrar</button>
+    <p id="mensaje"></p>
+    <p>¿No tenes cuenta? <a href="registro.html">Registrate</a></p>
   </div>
-  <p id="respuesta"></p>
-  <script type="module" src="JS/login.js"></script>
+
+  <script src="JS/login.js"></script>
 </body>
 </html>
