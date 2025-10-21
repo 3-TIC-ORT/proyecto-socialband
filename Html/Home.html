@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Social band</title>
+  <title>Home</title>
+  <link rel="stylesheet" href="Css/home.css">
 </head>
 <body>
-  <div id="barra lateral">
-    <p><a href="perfil.html">perfil</a></p>
-    <p><a href="ajustes.html">ajustes</a></p>
-    <p><a href="Buscar.html"></a>buscar</p>
-    
-    <label for="buscar">escribi algo para buscar</label><br>
-    <input type="text" id="buscar" name="buscar">
-    <input type="submit" value="buscar">
+  <div id="barralateral">
+    <p><a href="perfil.html">Perfil</a></p>
+    <p><a href="ajustes.html">Ajustes</a></p>
   </div>
+
+  <div id="buscador">
+    <label for="buscar">Buscar</label>
+    <input type="text" id="buscar" placeholder="Escribi algo para buscar">
+    <input type="submit" id="botonBuscar" value="Buscar">
+    <input type="submit" id="Filtrar" value="Filtrar">
+  </div>
+
   <div id="Publicacion">
     <p id="usuario">Username</p>
-    <img src="Foto de la publicacion.png" alt="Foto de la publicacion" id="foto">
-    <p>Icono de like    Icono de comentario</p>
+    <img src="foto-publicacion.png" alt="Foto de la publicacion" id="foto">
+    <p>iconos de like y comentario</p>
     <p id="descripcion">Descripcion</p>
-  </div> 
+  </div>
 <script src="JS/home.js"></script>
-<script src="JS/modoclaro.js"></script>
 </body>
 </html>
