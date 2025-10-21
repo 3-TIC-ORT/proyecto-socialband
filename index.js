@@ -3,7 +3,7 @@ import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } fro
 
 // Registro
 function leerUsuarios() {
-  const data = fs.readFileSync("./usuarios.json", "utf-8");
+  let data = fs.readFileSync("./usuarios.json", "utf-8");
   return JSON.parse(data);
 }
 
@@ -12,7 +12,7 @@ function guardarUsuarios(usuarios) {
 }
 
 subscribePOSTEvent("registroUsuario", (data) => {
-  const usuarios = leerUsuarios();
+  let usuarios = leerUsuarios();
 
   if (usuarios.find(u => u.email === data.email)) {
     return { msg: "Correo ya registrado.", exito: false };
@@ -27,9 +27,9 @@ subscribePOSTEvent("registroUsuario", (data) => {
 // Inicio de sesión
 
 subscribePOSTEvent("loginUsuario", (data) => {
-  const usuarios = leerUsuarios();
+  let usuarios = leerUsuarios();
 
-  const user = usuarios.find(u => u.email === data.email && u.contraseña === data.password);
+  let user = usuarios.find(u => u.email === data.email && u.contraseña === data.password);
 
   if (user) {
     return { msg: `Bienvenido ${user.nombre}`, exito: true };
