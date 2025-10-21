@@ -1,5 +1,3 @@
-import fs from "fs"
-import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 
 let form = document.getElementById("registro");
 let respuesta = document.getElementById("respuesta");
