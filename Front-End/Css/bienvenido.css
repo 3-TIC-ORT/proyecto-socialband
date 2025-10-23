@@ -1,5 +1,5 @@
 body {
-background-image: url("../fotos/Group\ 22\ \(10\).jpg");
+background-image: url("../Html/fotos/Group\ 22\ \(10\).jpg");
 background-size: cover;
 
     margin: 0;
@@ -23,6 +23,7 @@ background-size: cover;
   
   h1 {
     margin-bottom: 10px;
+    color: aliceblue;
   }
   
   hr {
@@ -39,7 +40,6 @@ background-size: cover;
     font-weight: bold;
     border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.2s;
   }
   
   button:hover {

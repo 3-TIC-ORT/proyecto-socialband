@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <title>Registrarse - Social Band</title>
-  <link rel="stylesheet" href="css/form.css" />
+  <link rel="stylesheet" href="../Css/registro.css" />
 </head>
 <body>
   <div class="formulario">
     <h2>Registrarse</h2>
-    <form action="login.html" id="registro" method="post">
+    <form class="form"  action="login.html" id="registro" method="post">
       <input type="text" id="nombre" placeholder="Nombre de usuario" required />
       <input type="email" id="email" placeholder="Correo" required />
       <input type="password" id="contraseña" placeholder="Contraseña" required />
@@ -18,9 +18,9 @@
       <input type="text" id="genero" placeholder="Género musical" required />
       <button type="submit">Crear cuenta</button>
     </form>
-    <p><a href="login.html">¿Ya tenés cuenta? Iniciá Sesión</a></p>
+    <p><a href="login.html">¿Ya tenes cuenta? Inicia Sesion</a></p>
   </div>
   <p id="respuesta"></p>
-  <script type="module" src="JS/frontend.js"></script>
+  <script type="module" src="../JS/registro.js"></script>
 </body>
 </html>
