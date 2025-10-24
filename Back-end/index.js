@@ -51,4 +51,16 @@ subscribePOSTEvent("loginUsuario", function(data) {
 });
 
 
+function leerUsuariosPerfil () {
+  let cont = fs.readFileSync("usuarios.json" , "utf-8")
+  let users = JSON.parse(cont)
+}
+function guardarUsuariosPerfil (users){
+fs.writeFileSync("./usuarios.json", JSON.stringify(users, null, 2));
+}
+subscribePOSTEvent ("perfilUsuario", function(data){
+
+});
+
+
 startServer(3000);
