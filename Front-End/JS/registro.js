@@ -1,3 +1,5 @@
+connect2Server(); 
+
 let form = document.getElementById("registro");
 let respuesta = document.getElementById("respuesta");
 
@@ -10,17 +12,15 @@ function obtenerDatos() {
   let instrumento = document.getElementById("instrumento").value;
   let genero = document.getElementById("genero").value;
 
-  let datos = {
-    nombre: nombre,
-    email: email,
-    contraseña: contraseña,
-    repcontraseña: repcontraseña,
-    edad: edad,
-    instrumento: instrumento,
-    genero: genero
+  return {
+    nombre,
+    email,
+    contraseña,
+    repcontraseña,
+    edad,
+    instrumento,
+    genero
   };
-
-  return datos;
 }
 
 function mostrarMensaje(texto) {
@@ -28,17 +28,24 @@ function mostrarMensaje(texto) {
 }
 
 function registrarUsuario(datos) {
-  if (datos.contraseña === datos.repcontraseña) {
-    mostrarMensaje("Cuenta creada con exito");
-    setTimeout(function() {
-      window.location.href = "login.html";
-    }, 1000);
-  } else {
+  if (datos.contraseña !== datos.repcontraseña) {
     mostrarMensaje("Las contraseñas no coinciden");
+    return;
   }
+
+  postEvent("registroUsuario", datos, (respuestaServidor) => {
+    if (respuestaServidor?.ok) {
+      mostrarMensaje("Cuenta creada con éxito");
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 1000);
+    } else {
+      mostrarMensaje(respuestaServidor?.mensaje || "Error al registrar usuario");
+    }
+  });
 }
 
-form.addEventListener("submit", function(e) {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   let datos = obtenerDatos();
   registrarUsuario(datos);
