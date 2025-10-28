@@ -1,6 +1,11 @@
 import fs from "fs"
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 
+if (!fs.existsSync("usuarios.json")) {
+  fs.writeFileSync("usuarios.json", "[]");
+}
+
+
 function leerUsuarios() {
   let contenido = fs.readFileSync("usuarios.json", "utf-8");
   let usuarios = JSON.parse(contenido);
