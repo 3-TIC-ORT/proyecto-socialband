@@ -1,52 +1,59 @@
-connect2Server(); 
+connect2Server();
 
 let form = document.getElementById("registro");
 let respuesta = document.getElementById("respuesta");
 
 function obtenerDatos() {
-  let nombre = document.getElementById("nombre").value;
-  let email = document.getElementById("email").value;
+  let nombre = document.getElementById("nombre").value.trim();
+  let email = document.getElementById("email").value.trim();
   let contraseña = document.getElementById("contraseña").value;
   let repcontraseña = document.getElementById("repcontraseña").value;
-  let edad = document.getElementById("edad").value;
-  let instrumento = document.getElementById("instrumento").value;
-  let genero = document.getElementById("genero").value;
+  let edad = document.getElementById("edad").value.trim();
+  let instrumento = document.getElementById("instrumento").value.trim();
+  let genero = document.getElementById("genero").value.trim();
 
   return {
-    nombre,
-    email,
-    contraseña,
-    repcontraseña,
-    edad,
-    instrumento,
-    genero
+    nombre: nombre,
+    email: email,
+    contraseña: contraseña,
+    repcontraseña: repcontraseña,
+    edad: edad,
+    instrumento: instrumento,
+    genero: genero
   };
 }
 
-function mostrarMensaje(texto) {
+function mostrarMensaje(texto, color) {
   respuesta.innerText = texto;
+  if (color) respuesta.style.color = color;
 }
 
 function registrarUsuario(datos) {
   if (datos.contraseña !== datos.repcontraseña) {
-    mostrarMensaje("Las contraseñas no coinciden");
+    mostrarMensaje("Las contraseñas no coinciden.", "red");
     return;
   }
-
-  postEvent("registroUsuario", datos, (respuestaServidor) => {
-    if (respuestaServidor?.ok) {
-      mostrarMensaje("Cuenta creada con éxito");
-      setTimeout(() => {
+  postEvent("registroUsuario", datos, function(res) {
+    if (res && res.exito) {
+      mostrarMensaje(res.msg, "green");
+      setTimeout(function() {
         window.location.href = "login.html";
       }, 1000);
     } else {
-      mostrarMensaje(respuestaServidor?.mensaje || "Error al registrar usuario");
+    
+      mostrarMensaje((res && res.msg) ? res.msg : "Error al registrar.", "red");
     }
   });
 }
 
-form.addEventListener("submit", (e) => {
+form.addEventListener("submit", function(e) {
   e.preventDefault();
   let datos = obtenerDatos();
+
+  if (!datos.nombre || !datos.email || !datos.contraseña || !datos.repcontraseña) {
+    mostrarMensaje("Completá los campos obligatorios.", "orange");
+    return;
+  }
+
   registrarUsuario(datos);
 });

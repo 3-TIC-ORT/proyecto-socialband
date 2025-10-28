@@ -1,35 +1,40 @@
 connect2Server();
 
-let email = document.getElementById("email");
-let pass = document.getElementById("password");
-let entrar = document.getElementById("entrar");
+let inputEmail = document.getElementById("email");
+let inputPass = document.getElementById("password");
+let btnEntrar = document.getElementById("entrar");
 let mensaje = document.getElementById("mensaje");
+
+function mostrarMensajeLogin(texto, color) {
+  mensaje.innerText = texto;
+  if (color) mensaje.style.color = color;
+}
 
 if (localStorage.getItem("logueado") === "true") {
   window.location.href = "home.html";
 }
 
-entrar.addEventListener("click", () => {
-  if (email.value.trim() === "" || pass.value.trim() === "") {
-    mensaje.textContent = "Completa todos los campos.";
+btnEntrar.addEventListener("click", function() {
+  let email = inputEmail.value.trim();
+  let contraseña = inputPass.value;
+
+  if (email === "" || contraseña === "") {
+    mostrarMensajeLogin("Completá ambos campos.", "orange");
     return;
   }
 
-  let datosLogin = {
-    email: email.value.trim(),
-    contraseña: pass.value.trim()
-  };
+  let datosLogin = { email: email, contraseña: contraseña };
 
-  postEvent("loginUsuario", datosLogin, (respuestaServidor) => {
-    if (respuestaServidor?.ok) {
+  postEvent("loginUsuario", datosLogin, function(res) {
+    if (res && res.exito) {
+      mostrarMensajeLogin(res.msg, "green");
       localStorage.setItem("logueado", "true");
-      mensaje.textContent = "Inicio de sesión exitoso";
-      setTimeout(() => {
+      localStorage.setItem("emailLogged", email);
+      setTimeout(function() {
         window.location.href = "home.html";
-      }, 1000);
+      }, 700);
     } else {
-      mensaje.textContent =
-        respuestaServidor?.mensaje || "Credenciales incorrectas.";
+      mostrarMensajeLogin((res && res.msg) ? res.msg : "Error en login.", "red");
     }
   });
 });
