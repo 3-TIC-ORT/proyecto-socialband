@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "nombre": "mati",
+    "email": "mati@gmail.com",
+    "contraseña": "1234",
+    "repcontraseña": "1234",
+    "edad": "1234",
+    "instrumento": "1234",
+    "genero": "1234"
+  }
+]
