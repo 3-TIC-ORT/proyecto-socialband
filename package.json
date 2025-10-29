@@ -1,5 +1,23 @@
 {
   "dependencies": {
     "soquetic": "^1.4.2"
-  }
+  },
+  "name": "proyecto-socialband-1",
+  "version": "1.0.0",
+  "description": "https://www.figma.com/design/qtS6x1Elm3B5BvaoeDzaDP/Untitled?node-id=0-1&p=f&t=V8Fu2wawVyi4NPjd-0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3-TIC-ORT/proyecto-socialband.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/3-TIC-ORT/proyecto-socialband/issues"
+  },
+  "homepage": "https://github.com/3-TIC-ORT/proyecto-socialband#readme"
 }
