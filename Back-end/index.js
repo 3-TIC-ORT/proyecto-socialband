@@ -1,19 +1,16 @@
 import fs from "fs"
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 
-if (!fs.existsSync("usuarios.json")) {
-  fs.writeFileSync("usuarios.json", "[]");
-}
 
 
 function leerUsuarios() {
-  let contenido = fs.readFileSync("usuarios.json", "utf-8");
+  let contenido = fs.readFileSync("Back-end/usuarios.json", "utf-8");
   let usuarios = JSON.parse(contenido);
   return usuarios;
 }
 
 function guardarUsuarios(usuarios) {
-  fs.writeFileSync("./usuarios.json", JSON.stringify(usuarios, null, 2));
+  fs.writeFileSync("Back-end/usuarios.json", JSON.stringify(usuarios, null, 2));
 }
 
 subscribePOSTEvent("registroUsuario", function(data) {
@@ -57,11 +54,11 @@ subscribePOSTEvent("loginUsuario", function(data) {
 
 
 function leerUsuariosPerfil () {
-  let cont = fs.readFileSync("usuarios.json" , "utf-8")
+  let cont = fs.readFileSync("Back-end/usuarios.json" , "utf-8")
   let users = JSON.parse(cont)
 }
 function guardarUsuariosPerfil (users){
-fs.writeFileSync("./usuarios.json", JSON.stringify(users, null, 2));
+fs.writeFileSync("Back-end/usuarios.json", JSON.stringify(users, null, 2));
 }
 subscribePOSTEvent ("perfilUsuario", function(data){
 
