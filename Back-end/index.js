@@ -64,5 +64,17 @@ subscribePOSTEvent ("perfilUsuario", function(data){
 
 });
 
+subscribePOSTEvent("busquedaUsuario", function(data){
+  let usuarios = fs.readFileSync("Back-end/index.js","utf-8");
+  let encontrado = null
+  for (let i = 0; i < usuarios.length; i++) {
+    if (usuarios[i].nombre === "") {
+        encontrado = usuarios[i];
+        break; 
+    }
+}
+console.log("Usuario encontrado:", encontrado);
+
+})
 
 startServer(3000);
