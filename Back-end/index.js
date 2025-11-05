@@ -1,8 +1,5 @@
 import fs from "fs"
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
-
-
-
 function leerUsuarios() {
   let contenido = fs.readFileSync("Back-end/usuarios.json", "utf-8");
   let usuarios = JSON.parse(contenido);
@@ -53,15 +50,43 @@ subscribePOSTEvent("loginUsuario", function(data) {
 });
 
 
-function leerUsuariosPerfil () {
-  let cont = fs.readFileSync("Back-end/usuarios.json" , "utf-8")
-  let users = JSON.parse(cont)
-}
-function guardarUsuariosPerfil (users){
-fs.writeFileSync("Back-end/usuarios.json", JSON.stringify(users, null, 2));
-}
-subscribePOSTEvent ("perfilUsuario", function(data){
+subscribePOSTEvent("verPerfil", function(data) {
+  let usuarios = leerUsuarios();
+  let usuario = null;
 
+  for (let i = 0; i < usuarios.length; i++) {
+    if (usuarios[i].email === data.email) {
+      usuario = usuarios[i];
+    }
+  }
+
+  if (usuario === null) {
+    return { msg: "Usuario no encontrado.", exito: false };
+  }
+
+  return { msg: usuario, exito: true };
+});
+subscribePOSTEvent("guardarPerfil", function(data) {
+  let usuarios = leerUsuarios();
+  let actualizado = false;
+
+  for (let i = 0; i < usuarios.length; i++) {
+    if (usuarios[i].email === data.email) {
+      usuarios[i].nombre = data.nombre;
+      usuarios[i].edad = data.edad;
+      usuarios[i].genero = data.genero;
+      usuarios[i].instrumento = data.instrumento;
+      usuarios[i]["genero musical"] = data["genero musical"];
+      actualizado = true;
+    }
+  }
+
+  if (actualizado) {
+    guardarUsuarios(usuarios);
+    return { msg: "Cambios guardados correctamente.", exito: true };
+  }
+
+  return { msg: "No se encontró el usuario.", exito: false };
 });
 
 subscribePOSTEvent("busquedaUsuario", function(data){
