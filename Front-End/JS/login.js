@@ -10,10 +10,6 @@ function mostrarMensajeLogin(texto, color) {
   if (color) mensaje.style.color = color;
 }
 
-if (localStorage.getItem("logueado") === "true") {
-  window.location.href = "home.html";
-}
-
 btnEntrar.addEventListener("click", function() {
   let email = inputEmail.value.trim();
   let contraseña = inputPass.value;
@@ -28,13 +24,24 @@ btnEntrar.addEventListener("click", function() {
   postEvent("loginUsuario", datosLogin, function(res) {
     if (res && res.exito) {
       mostrarMensajeLogin(res.msg, "green");
+
       localStorage.setItem("logueado", "true");
       localStorage.setItem("emailLogged", email);
-      setTimeout(function() {
+
+      let usuario = {
+        email: email,
+        contraseña: contraseña
+      };
+      localStorage.setItem("usuario", JSON.stringify(usuario));
+
+      setTimeout(() => {
         window.location.href = "home.html";
       }, 700);
     } else {
-      mostrarMensajeLogin((res && res.msg) ? res.msg : "Error en login.", "red");
+      mostrarMensajeLogin(
+        (res && res.msg) ? res.msg : "Correo o contraseña incorrectos.",
+        "red"
+      );
     }
   });
 });
