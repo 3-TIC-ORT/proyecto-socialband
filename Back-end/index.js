@@ -49,7 +49,6 @@ subscribePOSTEvent("loginUsuario", function(data) {
   }
 });
 
-
 subscribePOSTEvent("verPerfil", function(data) {
   let usuarios = leerUsuarios();
   let usuario = null;
@@ -89,17 +88,30 @@ subscribePOSTEvent("guardarPerfil", function(data) {
   return { msg: "No se encontró el usuario.", exito: false };
 });
 
-subscribePOSTEvent("busquedaUsuario", function(data){
-  let usuarios = fs.readFileSync("Back-end/index.js","utf-8");
-  let encontrado = null
-  for (let i = 0; i < usuarios.length; i++) {
-    if (usuarios[i].nombre === "") {
-        encontrado = usuarios[i];
-        break; 
-    }
-}
-console.log("Usuario encontrado:", encontrado);
+subscribePOSTEvent("busquedaUsuario", function(data) {
+  let usuarios = leerUsuarios();
+  let resultados = [];
 
-})
+  for (let i = 0; i < usuarios.length; i++) {
+    let u = usuarios[i];
+    let coincide = true;
+
+    if (data.nombre !== "" && u.nombre !== data.nombre) {
+      coincide = false;
+    }
+    if (data.instrumento !== "" && u.instrumento !== data.instrumento) {
+      coincide = false;
+    }
+    if (data.genero !== "" && u.genero !== data.genero) {
+      coincide = false;
+    }
+
+    if (coincide) {
+      resultados.push(u);
+    }
+  }
+
+  return { msg: resultados, exito: true };
+});
 
 startServer(3000);
