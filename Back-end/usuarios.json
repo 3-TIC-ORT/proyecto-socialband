@@ -7,15 +7,5 @@
     "edad": "1234",
     "instrumento": "1234",
     "genero": "1234"
-  },
-  {
-    "nombre": "riccota",
-    "email": "a@gmail.com",
-    "contraseña": "pene",
-    "repcontraseña": "pene",
-    "edad": "3",
-    "instrumento": "arriba",
-    "genero": "abajo",
-    "genero musical": ""
   }
 ]
