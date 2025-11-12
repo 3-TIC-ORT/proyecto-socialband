@@ -9,23 +9,31 @@
   <div id="barralateral">
     <p><a href="perfil.html">Perfil</a></p>
     <p><a href="ajustes.html">Ajustes</a></p>
+    <button id="cerrarSesion">Cerrar sesión</button>
   </div>
 
   <div id="buscador">
     <label for="buscar">Buscar</label>
-    <input type="text" id="buscar" placeholder="Escribi algo para buscar">
+    <input type="text" id="buscar" placeholder="Escribí algo para buscar">
     <input type="submit" id="botonBuscar" value="Buscar">
     <input type="submit" id="Filtrar" value="Filtrar">
   </div>
 
-  <div id="Publicacion">
-    <p id="usuario">Username</p>
-    <p>iconos de like y comentario</p>
-    <p id="descripcion">Descripcion</p>
+  <div id="crearPost">
+    <h2>Crear un nuevo posteo</h2>
+    <input type="text" id="titulo" placeholder="Título del post"><br>
+    <textarea id="contenido" placeholder="Escribí tu post..." rows="4" cols="40"></textarea><br>
+    <button id="publicar">Publicar</button>
   </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
-<script src="../JS/home.js"></script>
-<script src="../JS/modoclaro.js"></script>
+
+  <div id="muro">
+    <h2>Publicaciones</h2>
+    <div id="listaPosteos"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+  <script src="../JS/home.js"></script>
+  <script src="../JS/modoclaro.js"></script>
 </body>
 </html>
