@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>ajustes</title>
+  <title>Ajustes - Social Band</title>
   <link rel="stylesheet" href="../Css/ajustes.css">
 </head>
 <body>
   <h1>Ajustes</h1>
-    
-  <div class="modo">
- <button id="claro">Modo claro</button>
- <button id="oscuro">Modo oscuro</button>
- </div>
 
-<div class="control">
- <label for="volumen">Volumen</label>
- <input type="range" id="volumen" min="0" max="100" value="50">
-</div>
+  <div class="modos">
+    <button id="claro">Modo claro</button>
+    <button id="oscuro">Modo oscuro</button>
+  </div>
 
-<div class="control">
-<label for="brillo">Brillo</label>
-<input type="range" id="brillo" min="0" max="100" value="75">
-</div>
+  <div class="control">
+    <label for="brillo">Brillo</label>
+    <input type="range" id="brillo" min="20" max="150" value="100">
+  </div>
 
-<a href="home.html"> Volver a inicio</a>
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
-<script src="../JS/ajustes.js"></script>
-<script src="../JS/modoclaro.js"></script>
+  <div class="control">
+    <label for="volumen">Volumen</label>
+    <input type="range" id="volumen" min="0" max="100" value="50">
+  </div>
+
+  <a href="home.html" id="volver">Volver a inicio</a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+  <script src="../JS/modoclaro.js"></script>
+  <script src="../JS/ajustes.js"></script>
 </body>
 </html>

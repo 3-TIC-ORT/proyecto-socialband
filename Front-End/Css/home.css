@@ -1,46 +1,16 @@
-body {
-    display: flex;
-    margin: 0;
-    font-family: sans-serif;
-  }
-  
-  #barra-lateral {
-    width: 180px;
-    height: 100vh;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-  
-  #contenido {
-    flex: 1;
-    padding: 20px;
-  }
-  
-  #buscar {
-    margin-bottom: 25px;
-  }
-  
-  #publicacion {
-    border: 1px solid #000;
-    padding: 10px;
-    max-width: 500px;
-  }
-  
-  #usuario {
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  #foto {
-    display: block;
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    background: #ccc;
-    margin-bottom: 10px;
-  }
-  
-  #descripcion {
-    margin-top: 10px;
-  }
-  
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  transition: background-color 0.4s, color 0.4s, filter 0.4s;
+}
+
+html.modo-claro, body.modo-claro {
+  background-color: white;
+  color: black;
+}
+
+html.modo-oscuro, body.modo-oscuro {
+  background-color: #1e1e1e;
+  color: white;
+}

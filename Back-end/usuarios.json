@@ -7,5 +7,14 @@
     "edad": "1234",
     "instrumento": "1234",
     "genero": "1234"
+  },
+  {
+    "nombre": "pablo",
+    "email": "A@a.com",
+    "contraseña": "a",
+    "repcontraseña": "a",
+    "edad": "2",
+    "instrumento": "a",
+    "genero": "a"
   }
 ]
