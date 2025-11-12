@@ -88,6 +88,31 @@ subscribePOSTEvent("guardarPerfil", function(data) {
   return { msg: "No se encontró el usuario.", exito: false };
 });
 
+function leerPosteos() {
+  let contenido = fs.readFileSync("Back-end/posteos.json", "utf-8");
+  let posteos = JSON.parse(contenido);
+  return posteos;
+}
+
+function guardarPosteos(posteos) {
+  fs.writeFileSync("Back-end/posteos.json", JSON.stringify(posteos, null, 2));
+}
+
+subscribePOSTEvent("crearPosteo", function(data) {
+  let posteos = leerPosteos();
+
+  posteos.push(data);
+
+  guardarPosteos(posteos);
+  return { msg: "Posteo guardado correctamente.", exito: true };
+});
+
+subscribePOSTEvent("verPosteos", function() {
+  let posteos = leerPosteos();
+  return { msg: posteos, exito: true };
+});
+
+
 subscribePOSTEvent("busquedaUsuario", function(data) {
   let usuarios = leerUsuarios();
   let resultados = [];
