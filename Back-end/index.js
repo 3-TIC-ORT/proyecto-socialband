@@ -112,31 +112,78 @@ subscribePOSTEvent("verPosteos", function() {
   return { msg: posteos, exito: true };
 });
 
-
-subscribePOSTEvent("busquedaUsuario", function(data) {
-  let usuarios = leerUsuarios();
+subscribePOSTEvent("buscarPosteos", function(data) {
+  let posteos = leerPosteos();
   let resultados = [];
 
-  for (let i = 0; i < usuarios.length; i++) {
-    let u = usuarios[i];
-    let coincide = true;
+  for (let i = 0; i < posteos.length; i++) {
+    let post = posteos[i];
+    let coincide = false;
 
-    if (data.nombre !== "" && u.nombre !== data.nombre) {
-      coincide = false;
-    }
-    if (data.instrumento !== "" && u.instrumento !== data.instrumento) {
-      coincide = false;
-    }
-    if (data.genero !== "" && u.genero !== data.genero) {
-      coincide = false;
+    if (data.busqueda !== "" && post.titulo === data.busqueda) {
+      coincide = true;
     }
 
-    if (coincide) {
-      resultados.push(u);
+    if (data.busqueda !== "" && post.contenido === data.busqueda) {
+      coincide = true;
+    }
+
+    if (coincide === true) {
+      resultados.push(post);
     }
   }
 
   return { msg: resultados, exito: true };
 });
+
+subscribePOSTEvent("filtrarPosteos", function(data) {
+  let posteos = leerPosteos();
+  let usuarios = leerUsuarios();
+  let resultados = [];
+
+  for (let i = 0; i < posteos.length; i++) {
+    let post = posteos[i];
+    let usuario = null;
+
+    for (let j = 0; j < usuarios.length; j++) {
+      if (usuarios[j].email === post.autor) {
+        usuario = usuarios[j];
+      }
+    }
+
+    if (usuario === null) {
+      continue; 
+    }
+
+    let coincide = true;
+
+    if (data.nombre !== "" && usuario.nombre !== data.nombre) {
+      coincide = false;
+    }
+
+    if (data.edad !== "" && usuario.edad !== data.edad) {
+      coincide = false;
+    }
+
+    if (data.genero !== "" && usuario.genero !== data.genero) {
+      coincide = false;
+    }
+
+    if (data.instrumento !== "" && usuario.instrumento !== data.instrumento) {
+      coincide = false;
+    }
+
+    if (data["genero musical"] !== "" && usuario["genero musical"] !== data["genero musical"]) {
+      coincide = false;
+    }
+
+    if (coincide === true) {
+      resultados.push(post);
+    }
+  }
+
+  return { msg: resultados, exito: true };
+});
+
 
 startServer(3000);
