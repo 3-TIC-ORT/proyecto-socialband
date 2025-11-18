@@ -16,5 +16,14 @@
     "edad": "2",
     "instrumento": "a",
     "genero": "a"
+  },
+  {
+    "nombre": "hola",
+    "email": "a@gmail.com",
+    "contraseña": "a",
+    "repcontraseña": "a",
+    "edad": "4",
+    "instrumento": "a",
+    "genero": "a"
   }
 ]

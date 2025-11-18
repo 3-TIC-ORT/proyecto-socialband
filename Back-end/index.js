@@ -87,103 +87,134 @@ subscribePOSTEvent("guardarPerfil", function(data) {
 
   return { msg: "No se encontró el usuario.", exito: false };
 });
-
 function leerPosteos() {
-  let contenido = fs.readFileSync("Back-end/posteos.json", "utf-8");
-  let posteos = JSON.parse(contenido);
-  return posteos;
+  try {
+    let contenido = fs.readFileSync("Back-end/posteos.json", "utf-8");
+    if (!contenido.trim()) return [];
+    return JSON.parse(contenido);
+  } catch (e) {
+    return [];
+  }
 }
 
 function guardarPosteos(posteos) {
   fs.writeFileSync("Back-end/posteos.json", JSON.stringify(posteos, null, 2));
 }
 
-subscribePOSTEvent("crearPosteo", function(data) {
-  let posteos = leerPosteos();
-
-  posteos.push(data);
-
-  guardarPosteos(posteos);
-  return { msg: "Posteo guardado correctamente.", exito: true };
-});
-
-subscribePOSTEvent("verPosteos", function() {
-  let posteos = leerPosteos();
-  return { msg: posteos, exito: true };
-});
-
-subscribePOSTEvent("buscarPosteos", function(data) {
-  let posteos = leerPosteos();
-  let resultados = [];
-
-  for (let i = 0; i < posteos.length; i++) {
-    let post = posteos[i];
-    let coincide = false;
-
-    if (data.busqueda !== "" && post.titulo === data.busqueda) {
-      coincide = true;
-    }
-
-    if (data.busqueda !== "" && post.contenido === data.busqueda) {
-      coincide = true;
-    }
-
-    if (coincide === true) {
-      resultados.push(post);
-    }
-  }
-
-  return { msg: resultados, exito: true };
-});
-
-subscribePOSTEvent("filtrarPosteos", function(data) {
+subscribePOSTEvent("crearPosteo", function (data) {
   let posteos = leerPosteos();
   let usuarios = leerUsuarios();
-  let resultados = [];
 
-  for (let i = 0; i < posteos.length; i++) {
-    let post = posteos[i];
-    let usuario = null;
-
-    for (let j = 0; j < usuarios.length; j++) {
-      if (usuarios[j].email === post.autor) {
-        usuario = usuarios[j];
-      }
-    }
-
-    if (usuario === null) {
-      continue; 
-    }
-
-    let coincide = true;
-
-    if (data.nombre !== "" && usuario.nombre !== data.nombre) {
-      coincide = false;
-    }
-
-    if (data.edad !== "" && usuario.edad !== data.edad) {
-      coincide = false;
-    }
-
-    if (data.genero !== "" && usuario.genero !== data.genero) {
-      coincide = false;
-    }
-
-    if (data.instrumento !== "" && usuario.instrumento !== data.instrumento) {
-      coincide = false;
-    }
-
-    if (data["genero musical"] !== "" && usuario["genero musical"] !== data["genero musical"]) {
-      coincide = false;
-    }
-
-    if (coincide === true) {
-      resultados.push(post);
+  let nombreAutor = data.autorEmail;
+  for (let i = 0; i < usuarios.length; i++) {
+    if (usuarios[i].email === data.autorEmail) {
+      nombreAutor = usuarios[i].nombre;
+      break;
     }
   }
 
-  return { msg: resultados, exito: true };
+  let nuevoPost = {
+    id: Date.now(),
+    autorEmail: data.autorEmail,
+    autorNombre: nombreAutor,
+    titulo: data.titulo,
+    contenido: data.contenido,
+    fecha: new Date().toLocaleString(),
+    likes: 0,
+    comentarios: []
+  };
+
+  posteos.push(nuevoPost);
+  guardarPosteos(posteos);
+  return { msg: "Posteo creado correctamente.", exito: true };
 });
 
+subscribePOSTEvent("verPosteos", function () {
+  return { msg: leerPosteos(), exito: true };
+});
 
-startServer(3000);
+subscribePOSTEvent("darLike", function (data) {
+  let posteos = leerPosteos();
+  let ok = false;
+
+  for (let i = 0; i < posteos.length; i++) {
+    if (posteos[i].id === data.idPost) {
+      posteos[i].likes = (posteos[i].likes || 0) + 1;
+      ok = true;
+      break;
+    }
+  }
+
+  if (ok) {
+    guardarPosteos(posteos);
+    return { msg: "Like registrado.", exito: true };
+  }
+
+  return { msg: "Posteo no encontrado.", exito: false };
+});
+
+subscribePOSTEvent("comentarPosteo", function (data) {
+  let posteos = leerPosteos();
+  let usuarios = leerUsuarios();
+  let ok = false;
+
+  let nombreAutor = data.autorEmail;
+  for (let i = 0; i < usuarios.length; i++) {
+    if (usuarios[i].email === data.autorEmail) {
+      nombreAutor = usuarios[i].nombre;
+      break;
+    }
+  }
+
+  for (let i = 0; i < posteos.length; i++) {
+    if (posteos[i].id === data.idPost) {
+      posteos[i].comentarios = posteos[i].comentarios || [];
+      posteos[i].comentarios.push({
+        autor: nombreAutor,
+        texto: data.texto,
+        fecha: new Date().toLocaleString()
+      });
+      ok = true;
+      break;
+    }
+  }
+
+  if (ok) {
+    guardarPosteos(posteos);
+    return { msg: "Comentario agregado.", exito: true };
+  }
+
+  return { msg: "Posteo no encontrado.", exito: false };
+});
+
+subscribePOSTEvent("buscarPosteos", function (data) {
+  let texto = (data.texto || "").toLowerCase();
+  let posteos = leerPosteos();
+
+  if (texto === "") {
+    return { msg: posteos, exito: true };
+  }
+
+  let res = posteos.filter(p =>
+    p.titulo.toLowerCase().includes(texto) ||
+    p.contenido.toLowerCase().includes(texto) ||
+    p.autorNombre.toLowerCase().includes(texto)
+  );
+
+  return { msg: res, exito: true };
+});
+
+subscribePOSTEvent("filtrarPosteos", function (data) {
+  let posteos = leerPosteos();
+  let tipo = data.tipo;
+
+  if (tipo === "recientes") {
+    posteos.sort((a, b) => b.id - a.id);
+  } else if (tipo === "likes") {
+    posteos.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+  } else if (tipo === "alfabetico") {
+    posteos.sort((a, b) => a.titulo.localeCompare(b.titulo));
+  }
+
+  return { msg: posteos, exito: true };
+});

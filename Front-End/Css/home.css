@@ -1,16 +1,152 @@
-html, body {
-  width: 100%;
-  height: 100%;
+body {
   margin: 0;
-  transition: background-color 0.4s, color 0.4s, filter 0.4s;
+  font-family: Arial, sans-serif;
+  display: flex;
 }
 
-html.modo-claro, body.modo-claro {
-  background-color: white;
+#barralateral {
+  width: 140px;
+  background: #f1f1f1;
+  padding: 10px;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+#barralateral p {
+  margin: 10px 0;
+}
+
+#barralateral a {
+  text-decoration: none;
   color: black;
 }
 
-html.modo-oscuro, body.modo-oscuro {
-  background-color: #1e1e1e;
-  color: white;
+#barralateral button {
+  margin-top: 20px;
+  width: 100%;
 }
+
+#contenido {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#buscador {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#menuFiltros {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 5px 0;
+  z-index: 5;
+}
+
+#menuFiltros p {
+  margin: 0;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+#menuFiltros p:hover {
+  background: #eee;
+}
+
+.oculto {
+  display: none;
+}
+
+#muro {
+  max-width: 900px;
+}
+
+.post {
+  background: #f8f8f8;
+  border-radius: 6px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+}
+
+.meta {
+  color: #555;
+  font-size: 12px;
+}
+
+.textoPost {
+  margin: 10px 0;
+}
+
+.accionesPost {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+}
+
+.btnLike {
+  cursor: pointer;
+}
+
+.comentarios {
+  border-top: 1px solid #ddd;
+  margin-top: 5px;
+  padding-top: 5px;
+  font-size: 13px;
+}
+
+#btnNuevoPost {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: black;
+  color: white;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 10;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  z-index: 11;
+  width: 300px;
+  box-sizing: border-box;
+}
+
+.modal h3 {
+  margin-top: 0;
+}
+
+.modal input,
+.modal textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.accionesModal {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+}
+

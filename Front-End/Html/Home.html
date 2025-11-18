@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Home</title>
-  <link rel="stylesheet" href="Css/home.css">
+  <link rel="stylesheet" href="../Css/home.css">
 </head>
 <body>
   <div id="barralateral">
@@ -12,23 +12,37 @@
     <button id="cerrarSesion">Cerrar sesión</button>
   </div>
 
-  <div id="buscador">
-    <label for="buscar">Buscar</label>
-    <input type="text" id="buscar" placeholder="Escribí algo para buscar">
-    <input type="submit" id="botonBuscar" value="Buscar">
-    <input type="submit" id="Filtrar" value="Filtrar">
+  <div id="contenido">
+    <div id="buscador">
+      <input type="text" id="buscar" placeholder="Buscar posteos o usuarios...">
+      <button id="botonBuscar">Buscar</button>
+      <button id="botonFiltros">Filtros</button>
+
+      <div id="menuFiltros" class="oculto">
+        <p data-filtro="recientes">Más recientes</p>
+        <p data-filtro="likes">Más likeados</p>
+        <p data-filtro="alfabetico">Alfabético</p>
+      </div>
+    </div>
+
+    <div id="muro">
+      <h2>Publicaciones</h2>
+      <div id="listaPosteos"></div>
+    </div>
   </div>
 
-  <div id="crearPost">
-    <h2>Crear un nuevo posteo</h2>
-    <input type="text" id="titulo" placeholder="Título del post"><br>
-    <textarea id="contenido" placeholder="Escribí tu post..." rows="4" cols="40"></textarea><br>
-    <button id="publicar">Publicar</button>
-  </div>
+  <button id="btnNuevoPost">+</button>
 
-  <div id="muro">
-    <h2>Publicaciones</h2>
-    <div id="listaPosteos"></div>
+  <div id="overlay" class="overlay oculto"></div>
+
+  <div id="modalPost" class="modal oculto">
+    <h3>Crear un nuevo posteo</h3>
+    <input type="text" id="tituloPost" placeholder="Título del post">
+    <textarea id="contenidoPost" placeholder="Escribí tu post..." rows="4"></textarea>
+    <div class="accionesModal">
+      <button id="publicarPost">Publicar</button>
+      <button id="cancelarPost">Cancelar</button>
+    </div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
