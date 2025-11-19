@@ -25,5 +25,14 @@
     "edad": "4",
     "instrumento": "a",
     "genero": "a"
+  },
+  {
+    "nombre": "mati",
+    "email": "riqui@gmail.com",
+    "contraseña": "riqui",
+    "repcontraseña": "riqui",
+    "edad": "21",
+    "instrumento": "riqui",
+    "genero": "riqui"
   }
 ]

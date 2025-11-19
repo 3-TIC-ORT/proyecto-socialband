@@ -149,4 +149,21 @@ body {
   justify-content: flex-end;
   gap: 5px;
 }
+#solicitudesPendientes {
+  margin-top: 10px;
+  background: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+}
 
+.solicitud {
+  margin-bottom: 8px;
+  padding: 6px;
+  border-bottom: 1px solid #ccc;
+}
+
+.solicitud button {
+  margin-right: 5px;
+  padding: 4px 8px;
+  cursor: pointer;
+}

@@ -1,5 +1,8 @@
-import fs from "fs"
+import fs from "fs";
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
+
+// ==================== USUARIOS ====================
+
 function leerUsuarios() {
   let contenido = fs.readFileSync("Back-end/usuarios.json", "utf-8");
   let usuarios = JSON.parse(contenido);
@@ -10,7 +13,7 @@ function guardarUsuarios(usuarios) {
   fs.writeFileSync("Back-end/usuarios.json", JSON.stringify(usuarios, null, 2));
 }
 
-subscribePOSTEvent("registroUsuario", function(data) {
+subscribePOSTEvent("registroUsuario", function (data) {
   let usuarios = leerUsuarios();
 
   let existe = false;
@@ -30,7 +33,7 @@ subscribePOSTEvent("registroUsuario", function(data) {
   return { msg: "Usuario registrado correctamente.", exito: true };
 });
 
-subscribePOSTEvent("loginUsuario", function(data) {
+subscribePOSTEvent("loginUsuario", function (data) {
   let usuarios = leerUsuarios();
   let encontrado = false;
   let nombre = "";
@@ -49,7 +52,7 @@ subscribePOSTEvent("loginUsuario", function(data) {
   }
 });
 
-subscribePOSTEvent("verPerfil", function(data) {
+subscribePOSTEvent("verPerfil", function (data) {
   let usuarios = leerUsuarios();
   let usuario = null;
 
@@ -65,7 +68,8 @@ subscribePOSTEvent("verPerfil", function(data) {
 
   return { msg: usuario, exito: true };
 });
-subscribePOSTEvent("guardarPerfil", function(data) {
+
+subscribePOSTEvent("guardarPerfil", function (data) {
   let usuarios = leerUsuarios();
   let actualizado = false;
 
@@ -91,7 +95,8 @@ function leerPosteos() {
   try {
     let contenido = fs.readFileSync("Back-end/posteos.json", "utf-8");
     if (!contenido.trim()) return [];
-    return JSON.parse(contenido);
+    let posteos = JSON.parse(contenido);
+    return posteos;
   } catch (e) {
     return [];
   }
@@ -120,7 +125,7 @@ subscribePOSTEvent("crearPosteo", function (data) {
     titulo: data.titulo,
     contenido: data.contenido,
     fecha: new Date().toLocaleString(),
-    likes: 0,
+    likes: [],
     comentarios: []
   };
 
@@ -130,7 +135,39 @@ subscribePOSTEvent("crearPosteo", function (data) {
 });
 
 subscribePOSTEvent("verPosteos", function () {
-  return { msg: leerPosteos(), exito: true };
+  let posteos = leerPosteos();
+  let usuarios = leerUsuarios();
+  let ahora = Date.now();
+
+  for (let i = 0; i < posteos.length; i++) {
+    if (!posteos[i].id) {
+      posteos[i].id = ahora + i;
+    }
+    if (!Array.isArray(posteos[i].likes)) {
+      if (typeof posteos[i].likes === "number") {
+        posteos[i].likes = [];
+      } else {
+        posteos[i].likes = [];
+      }
+    }
+    if (!Array.isArray(posteos[i].comentarios)) {
+      posteos[i].comentarios = [];
+    }
+    if (!posteos[i].autorNombre || posteos[i].autorNombre === "Desconocido") {
+      for (let j = 0; j < usuarios.length; j++) {
+        if (usuarios[j].email === posteos[i].autorEmail) {
+          posteos[i].autorNombre = usuarios[j].nombre;
+          break;
+        }
+      }
+      if (!posteos[i].autorNombre) {
+        posteos[i].autorNombre = "Desconocido";
+      }
+    }
+  }
+
+  guardarPosteos(posteos);
+  return { msg: posteos, exito: true };
 });
 
 subscribePOSTEvent("darLike", function (data) {
@@ -139,7 +176,15 @@ subscribePOSTEvent("darLike", function (data) {
 
   for (let i = 0; i < posteos.length; i++) {
     if (posteos[i].id === data.idPost) {
-      posteos[i].likes = (posteos[i].likes || 0) + 1;
+      if (!Array.isArray(posteos[i].likes)) {
+        posteos[i].likes = [];
+      }
+      let idx = posteos[i].likes.indexOf(data.email);
+      if (idx === -1) {
+        posteos[i].likes.push(data.email);
+      } else {
+        posteos[i].likes.splice(idx, 1);
+      }
       ok = true;
       break;
     }
@@ -147,7 +192,7 @@ subscribePOSTEvent("darLike", function (data) {
 
   if (ok) {
     guardarPosteos(posteos);
-    return { msg: "Like registrado.", exito: true };
+    return { msg: "Like actualizado.", exito: true };
   }
 
   return { msg: "Posteo no encontrado.", exito: false };
@@ -168,9 +213,12 @@ subscribePOSTEvent("comentarPosteo", function (data) {
 
   for (let i = 0; i < posteos.length; i++) {
     if (posteos[i].id === data.idPost) {
-      posteos[i].comentarios = posteos[i].comentarios || [];
+      if (!Array.isArray(posteos[i].comentarios)) {
+        posteos[i].comentarios = [];
+      }
       posteos[i].comentarios.push({
-        autor: nombreAutor,
+        autorNombre: nombreAutor,
+        autorEmail: data.autorEmail,
         texto: data.texto,
         fecha: new Date().toLocaleString()
       });
@@ -195,11 +243,19 @@ subscribePOSTEvent("buscarPosteos", function (data) {
     return { msg: posteos, exito: true };
   }
 
-  let res = posteos.filter(p =>
-    p.titulo.toLowerCase().includes(texto) ||
-    p.contenido.toLowerCase().includes(texto) ||
-    p.autorNombre.toLowerCase().includes(texto)
-  );
+  let res = [];
+  for (let i = 0; i < posteos.length; i++) {
+    let p = posteos[i];
+    let autor = p.autorNombre || "";
+    let coincide =
+      p.titulo.toLowerCase().includes(texto) ||
+      p.contenido.toLowerCase().includes(texto) ||
+      autor.toLowerCase().includes(texto);
+
+    if (coincide) {
+      res.push(p);
+    }
+  }
 
   return { msg: res, exito: true };
 });
@@ -209,12 +265,125 @@ subscribePOSTEvent("filtrarPosteos", function (data) {
   let tipo = data.tipo;
 
   if (tipo === "recientes") {
-    posteos.sort((a, b) => b.id - a.id);
+    posteos.sort(function (a, b) {
+      return b.id - a.id;
+    });
   } else if (tipo === "likes") {
-    posteos.sort((a, b) => (b.likes || 0) - (a.likes || 0));
+    posteos.sort(function (a, b) {
+      let la = Array.isArray(a.likes) ? a.likes.length : 0;
+      let lb = Array.isArray(b.likes) ? b.likes.length : 0;
+      return lb - la;
+    });
   } else if (tipo === "alfabetico") {
-    posteos.sort((a, b) => a.titulo.localeCompare(b.titulo));
+    posteos.sort(function (a, b) {
+      return a.titulo.localeCompare(b.titulo);
+    });
   }
 
   return { msg: posteos, exito: true };
 });
+
+function leerSolicitudes() {
+  try {
+    let contenido = fs.readFileSync("Back-end/solicitudes.json", "utf-8");
+    if (!contenido.trim()) return [];
+    let solicitudes = JSON.parse(contenido);
+    return solicitudes;
+  } catch (e) {
+    return [];
+  }
+}
+
+function guardarSolicitudes(solicitudes) {
+  fs.writeFileSync("Back-end/solicitudes.json", JSON.stringify(solicitudes, null, 2));
+}
+
+subscribePOSTEvent("enviarSolicitud", function (data) {
+  if (!data.de || !data.para) {
+    return { msg: "Datos incompletos.", exito: false };
+  }
+
+  if (data.de === data.para) {
+    return { msg: "No te podés enviar solicitud a vos mismo.", exito: false };
+  }
+
+  let solicitudes = leerSolicitudes();
+
+  for (let i = 0; i < solicitudes.length; i++) {
+    if (
+      solicitudes[i].de === data.de &&
+      solicitudes[i].para === data.para &&
+      solicitudes[i].estado === "pendiente"
+    ) {
+      return { msg: "Ya enviaste una solicitud a este usuario.", exito: false };
+    }
+  }
+
+  let nueva = {
+    id: Date.now(),
+    de: data.de,
+    para: data.para,
+    estado: "pendiente",
+    fecha: new Date().toLocaleString()
+  };
+
+  solicitudes.push(nueva);
+  guardarSolicitudes(solicitudes);
+
+  return { msg: "Solicitud enviada.", exito: true };
+});
+
+subscribePOSTEvent("verSolicitudes", function (data) {
+  let email = data.email;
+  let solicitudes = leerSolicitudes();
+  let usuarios = leerUsuarios();
+
+  let recibidas = [];
+
+  for (let i = 0; i < solicitudes.length; i++) {
+    let s = solicitudes[i];
+    if (s.para === email && s.estado === "pendiente") {
+      let nombreDe = s.de;
+      for (let j = 0; j < usuarios.length; j++) {
+        if (usuarios[j].email === s.de) {
+          nombreDe = usuarios[j].nombre;
+          break;
+        }
+      }
+      recibidas.push({
+        id: s.id,
+        de: s.de,
+        nombreDe: nombreDe,
+        fecha: s.fecha
+      });
+    }
+  }
+
+  return { msg: recibidas, exito: true };
+});
+
+subscribePOSTEvent("responderSolicitud", function (data) {
+  let solicitudes = leerSolicitudes();
+  let ok = false;
+
+  for (let i = 0; i < solicitudes.length; i++) {
+    if (solicitudes[i].id === data.idSolicitud && solicitudes[i].estado === "pendiente") {
+      if (data.accion === "aceptar") {
+        solicitudes[i].estado = "aceptada";
+      } else {
+        solicitudes[i].estado = "rechazada";
+      }
+      ok = true;
+      break;
+    }
+  }
+
+  if (ok) {
+    guardarSolicitudes(solicitudes);
+    return { msg: "Solicitud " + data.accion + "da.", exito: true };
+  }
+
+  return { msg: "Solicitud no encontrada.", exito: false };
+});
+
+startServer(3000);
