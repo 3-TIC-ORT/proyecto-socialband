@@ -34,5 +34,14 @@
     "edad": "21",
     "instrumento": "riqui",
     "genero": "riqui"
+  },
+  {
+    "nombre": "Joaquin",
+    "email": "Joaquin@gmail.com",
+    "contraseña": "Joaquin",
+    "repcontraseña": "Joaquin",
+    "edad": "15",
+    "instrumento": "Aurelio",
+    "genero": "Rock"
   }
 ]

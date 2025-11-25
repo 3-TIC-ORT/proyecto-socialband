@@ -1,61 +1,20 @@
 [
   {
     "autorEmail": "a@gmail.com",
-    "titulo": "Aure",
-    "contenido": "aure chico heavy",
+    "titulo": "Busco Banda De rock",
+    "contenido": "Me llamo martin, soy guitarriste, tengo 30 años y soy de Buenos Aires",
     "id": 1763553623654,
     "likes": [],
     "comentarios": [],
-    "autorNombre": "hola"
+    "autorNombre": "Martin Melman"
   },
   {
     "autorEmail": "a@gmail.com",
-    "titulo": "porno",
-    "contenido": "porno",
+    "titulo": "Busco guitarrista",
+    "contenido": "Busco un guitarrista, que tenga experiencia y que pueda ir lo fines de semana a Villa devoto",
     "id": 1763553623655,
-    "likes": [
-      "riqui@gmail.com"
-    ],
-    "comentarios": [],
-    "autorNombre": "hola"
-  },
-  {
-    "autorEmail": "a@gmail.com",
-    "titulo": "porno",
-    "contenido": "pono",
-    "id": 1763553623656,
-    "likes": [
-      "riqui@gmail.com"
-    ],
-    "comentarios": [],
-    "autorNombre": "hola"
-  },
-  {
-    "autorEmail": "a@gmail.com",
-    "titulo": "ricota post",
-    "contenido": "aura",
-    "id": 1763553623657,
     "likes": [],
-    "comentarios": [
-      {
-        "autorNombre": "mati",
-        "autorEmail": "riqui@gmail.com",
-        "texto": "aure",
-        "fecha": "19/11/2025, 09:01:01"
-      }
-    ],
-    "autorNombre": "hola"
-  },
-  {
-    "id": 1763553691371,
-    "autorEmail": "riqui@gmail.com",
-    "autorNombre": "mati",
-    "titulo": "hola",
-    "contenido": "hola",
-    "fecha": "19/11/2025, 09:01:31",
-    "likes": [
-      "riqui@gmail.com"
-    ],
-    "comentarios": []
+    "comentarios": [],
+    "autorNombre": "Joaquin Sanchez Laffont"
   }
 ]

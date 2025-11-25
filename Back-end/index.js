@@ -1,8 +1,6 @@
 import fs from "fs";
 import { subscribeGETEvent, subscribePOSTEvent, realTimeEvent, startServer } from "soquetic";
 
-// ==================== USUARIOS ====================
-
 function leerUsuarios() {
   let contenido = fs.readFileSync("Back-end/usuarios.json", "utf-8");
   let usuarios = JSON.parse(contenido);
