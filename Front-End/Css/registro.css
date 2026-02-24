@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+
+  background-image: url("../Html/fotos/Group 142.jpg"); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.logo {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 2;
+}
+
+.circulo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.sb {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 2px;
+}
+
+.diag {
+  position: absolute;
+  width: 2px;
+  height: 70%;
+  background: #333;
+  transform: rotate(25deg);
+}
+
+.formulario {
+  position: relative;
+  z-index: 2;
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+
+  padding: 30px;
+  border-radius: 12px;
+  width: 350px;
+  text-align: center;
+  color: white;
+}
+
+.formulario h2 {
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.formulario input {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+
+.formulario button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 30px;
+  border: none;
+  font-weight: bold;
+  background: #6f6aa8;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.formulario button:hover {
+  background: #8b86c9;
+}
+
+.link {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.link a {
+  color: #a6a2ff;
+  text-decoration: none;
+}
+
+#respuesta {
+  margin-top: 10px;
+}

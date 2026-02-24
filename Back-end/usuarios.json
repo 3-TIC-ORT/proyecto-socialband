@@ -43,5 +43,14 @@
     "edad": "15",
     "instrumento": "Aurelio",
     "genero": "Rock"
+  },
+  {
+    "nombre": "aur",
+    "email": "carlosaura@gmail.com",
+    "contraseña": "aura",
+    "repcontraseña": "aura",
+    "edad": "15",
+    "instrumento": "aura",
+    "genero": "a"
   }
 ]

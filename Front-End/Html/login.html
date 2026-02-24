@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Iniciar Sesion</title>
-  <link rel="stylesheet" href="../Css/login.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Iniciar Sesión</title>
+  <link rel="stylesheet" href="../Css/login.css" />
 </head>
+
 <body>
-  <div>
-    <h2>Iniciar Sesion</h2>
-    <input type="email" id="email" placeholder="Mail">
-    <input type="password" id="password" placeholder="Contraseña">
+  <div class="overlay" id="overlayLogin"></div>
+
+  <div class="logo">
+    <div class="circulo">
+      <span class="sb">SB</span>
+      <span class="diag"></span>
+    </div>  
+  </div>
+
+  <div class="contenedorBotones">
+    <button id="btnAbrirLogin" class="btnGrande">INICIAR SESION</button>
+    <button id="btnIrRegistro" class="btnGrande">REGISTRARSE</button>
+  </div>
+
+  <div id="modalLogin" class="modal oculto">
+    <h2>Iniciar Sesión</h2>
+    <input type="email" id="email" placeholder="Mail" />
+    <input type="password" id="password" placeholder="Contraseña" />
     <button id="entrar">Entrar</button>
     <p id="mensaje"></p>
-    <p>¿No tenes cuenta? <a href="registro.html">Registrate</a></p>
+    <p class="link">¿No tenes cuenta? <a href="registro.html">Registrate</a></p>
+    <button id="cerrarModal" type="button" class="btnCerrar">Cerrar</button>
   </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+
   <script src="../JS/login.js"></script>
 </body>
 </html>

@@ -1,17 +1,123 @@
-html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    transition: background-color 0.4s, color 0.4s, filter 0.4s;
-  }
-  
-  html.modo-claro, body.modo-claro {
-    background-color: white;
-    color: black;
-  }
-  
-  html.modo-oscuro, body.modo-oscuro {
-    background-color: #1e1e1e;
-    color: white;
-  }
-  
+body{
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  background-image: url("../Html/fotos/Group 147.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 0;
+}
+
+.logo{
+  position: fixed;
+  top: 25px;
+  left: 25px;
+  z-index: 10;
+}
+
+.circulo{
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background: rgba(200,200,200,0.9);
+  border: 4px solid rgba(0,0,0,0.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position: relative;
+}
+
+.sb{
+  font-size: 44px;
+  font-weight: 800;
+  color:#2b2b2b;
+}
+
+.circulo::after{
+  content:"";
+  position:absolute;
+  width: 3px;
+  height: 115%;
+  background: rgba(0,0,0,0.55);
+  transform: rotate(28deg);
+}
+
+.contenedor-ajustes{
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+h1{
+  color: white;
+  font-size: 38px;
+  margin-bottom: 40px;
+}
+
+.modos{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.modos button{
+  width: 160px;
+  height: 45px;
+  border-radius: 25px;
+  border: none;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#claro{
+  background: #bdbdbd;
+}
+
+#oscuro{
+  background: #6f6464;
+  color: white;
+}
+
+.slash{
+  color: white;
+  font-size: 40px;
+  font-weight: 800;
+}
+
+.control{
+  margin-bottom: 30px;
+  color: white;
+  font-size: 20px;
+}
+
+input[type="range"]{
+  width: 300px;
+}
+
+#volver{
+  margin-top: 40px;
+  text-decoration: none;
+  background: rgba(200,200,200,0.9);
+  padding: 12px 25px;
+  border-radius: 20px;
+  font-weight: 700;
+  color: black;
+}

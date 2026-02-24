@@ -1,29 +1,41 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Ajustes - Social Band</title>
   <link rel="stylesheet" href="../Css/ajustes.css">
 </head>
 <body>
-  <h1>Ajustes</h1>
 
-  <div class="modos">
-    <button id="claro">Modo claro</button>
-    <button id="oscuro">Modo oscuro</button>
+  <div class="logo">
+    <div class="circulo">
+      <span class="sb">SB</span>
+    </div>
   </div>
 
-  <div class="control">
-    <label for="brillo">Brillo</label>
-    <input type="range" id="brillo" min="20" max="150" value="100">
-  </div>
+  <div class="contenedor-ajustes">
 
-  <div class="control">
-    <label for="volumen">Volumen</label>
-    <input type="range" id="volumen" min="0" max="100" value="50">
-  </div>
+    <h1>Ajustes</h1>
 
-  <a href="home.html" id="volver">Volver a inicio</a>
+    <div class="modos">
+      <button id="claro">Modo claro</button>
+      <span class="slash">/</span>
+      <button id="oscuro">Modo oscuro</button>
+    </div>
+
+    <div class="control">
+      <label for="brillo">Brillo</label>
+      <input type="range" id="brillo" min="20" max="150" value="100">
+    </div>
+
+    <div class="control">
+      <label for="volumen">Volumen</label>
+      <input type="range" id="volumen" min="0" max="100" value="50">
+    </div>
+
+    <a href="home.html" id="volver">Volver a inicio</a>
+
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>

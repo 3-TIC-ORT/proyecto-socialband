@@ -1,169 +1,365 @@
-body {
+body{
   margin: 0;
   font-family: Arial, sans-serif;
-  display: flex;
-}
 
-#barralateral {
-  width: 140px;
-  background: #f1f1f1;
-  padding: 10px;
-  box-sizing: border-box;
-  height: 100vh;
-}
+  background-image: url("../Html/fotos/Group 147.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-#barralateral p {
-  margin: 10px 0;
-}
-
-#barralateral a {
-  text-decoration: none;
-  color: black;
-}
-
-#barralateral button {
-  margin-top: 20px;
-  width: 100%;
-}
-
-#contenido {
-  flex: 1;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-#buscador {
+  min-height: 100vh;
+  overflow-x: hidden;
   position: relative;
-  margin-bottom: 20px;
 }
 
-#menuFiltros {
-  position: absolute;
-  top: 35px;
-  right: 0;
-  background: white;
-  border: 1px solid #ccc;
-  padding: 5px 0;
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.logo{
+  position: fixed;
+  top: 22px;
+  left: 22px;
+  z-index: 20;
+}
+
+.circulo{
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  background: rgba(200,200,200,0.9);
+  border: 4px solid rgba(0,0,0,0.55);
+  position: relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.circulo .sb{
+  font-weight: 800;
+  font-size: 44px;
+  color:#2b2b2b;
+  letter-spacing: 2px;
+}
+
+.circulo::after{
+  content:"";
+  position:absolute;
+  width: 3px;
+  height: 115%;
+  background: rgba(0,0,0,0.55);
+  transform: rotate(28deg);
+}
+
+#barralateral,
+#contenido{
+  position: relative;
   z-index: 5;
 }
 
-#menuFiltros p {
-  margin: 0;
-  padding: 5px 15px;
-  cursor: pointer;
+#barralateral{
+  position: fixed;
+  left: 18px;
+  top: 150px;
+  width: 240px;
+  background: transparent;
+  padding: 0;
+  height: auto;
 }
 
-#menuFiltros p:hover {
-  background: #eee;
+#barralateral p{
+  margin: 0 0 20px 0;
 }
 
-.oculto {
-  display: none;
-}
-
-#muro {
-  max-width: 900px;
-}
-
-.post {
-  background: #f8f8f8;
-  border-radius: 6px;
-  padding: 10px 15px;
-  margin-bottom: 15px;
-}
-
-.meta {
-  color: #555;
-  font-size: 12px;
-}
-
-.textoPost {
-  margin: 10px 0;
-}
-
-.accionesPost {
+#barralateral a{
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin-bottom: 5px;
-}
+  justify-content: center;
 
-.btnLike {
+  width: 220px;
+  height: 68px;
+
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 2px;
+
+  color: #2b2b2b;
+  background: rgba(200,200,200,0.85);
+  border: 3px solid rgba(255,255,255,0.75);
+  border-radius: 40px;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+#barralateral button{
+  display:block;
+  width: 220px;
+  height: 46px;
+  margin: 12px 0 0 0;
+
+  border-radius: 14px;
+  border: 2px solid rgba(255,255,255,0.7);
+  background: rgba(200,200,200,0.8);
+  font-weight: 700;
   cursor: pointer;
 }
 
-.comentarios {
-  border-top: 1px solid #ddd;
-  margin-top: 5px;
-  padding-top: 5px;
+#barralateral button:hover,
+#barralateral a:hover{
+  transform: scale(1.02);
+}
+
+#contenido{
+  width: 100%;
+  padding: 26px 28px;
+  box-sizing: border-box;
+}
+#buscador{
+  width: min(980px, 92vw);
+  margin: 18px auto 18px auto;
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+#buscar{
+  flex: 1;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 30px;
+  border: 2px solid rgba(255,255,255,0.65);
+  background: rgba(200,200,200,0.82);
+  outline: none;
+  font-size: 16px;
+}
+
+#botonBuscar,
+#botonFiltros{
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 16px;
+  border: 2px solid rgba(255,255,255,0.65);
+  background: rgba(200,200,200,0.82);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#menuFiltros{
+  position: absolute;
+  top: 52px;
+  right: 0;
+  background: rgba(230,230,230,0.95);
+  border: 1px solid rgba(0,0,0,0.25);
+  padding: 6px 0;
+  z-index: 50;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#menuFiltros p{
+  margin: 0;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#menuFiltros p:hover{
+  background: rgba(0,0,0,0.08);
+}
+
+.oculto{
+  display: none !important;
+}
+
+#muro{
+  width: min(980px, 92vw);
+  margin: 0 auto;
+}
+
+#muro h2{
+  color: rgba(255,255,255,0.0); 
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#listaPosteos{
+  margin-top: 10px;
+}
+
+.post{
+  background: rgba(220,220,220,0.92);
+  border: 2px solid rgba(0,0,0,0.35);
+  border-radius: 18px;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.meta{
+  color: rgba(0,0,0,0.65);
   font-size: 13px;
 }
 
-#btnNuevoPost {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: none;
-  background: black;
-  color: white;
-  font-size: 26px;
-  cursor: pointer;
+.textoPost{
+  margin: 12px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f1f1f;
 }
 
-.overlay {
+.accionesPost{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin: 10px 0 6px 0;
+}
+
+.btnLike{
+  cursor:pointer;
+}
+
+.comentarios{
+  border-top: 2px solid rgba(0,0,0,0.25);
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: 14px;
+}
+
+#btnNuevoPost{
+  position: fixed;
+  right: 30px;
+  bottom: 28px;
+
+  width: 420px;
+  max-width: 52vw;
+  height: 78px;
+
+  border-radius: 44px;
+  border: 3px solid rgba(255,255,255,0.75);
+
+  background: rgba(120,120,180,0.85);
+  cursor: pointer;
+
+  box-shadow: 0 14px 30px rgba(0,0,0,0.30);
+  z-index: 30;
+
+  font-size: 0;
+  color: transparent;
+}
+
+#btnNuevoPost::before{
+  content: "subir posteo";
+  font-size: 34px;
+  font-weight: 800;
+  color: rgba(0,0,0,0.60);
+  text-transform: lowercase;
+}
+
+#btnNuevoPost:hover{
+  transform: scale(1.02);
+}
+.overlay{
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
-  z-index: 10;
+  background: rgba(0,0,0,0.60);
+  z-index: 9998;
 }
 
-.modal {
+.modal{
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
-  padding: 15px;
-  border-radius: 6px;
-  z-index: 11;
-  width: 300px;
+
+  width: 900px;
+  max-width: 92vw;
+  border-radius: 28px;
+  background: rgba(225,225,225,0.96);
+  border: 2px solid rgba(0,0,0,0.35);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+
+  z-index: 9999;
+  overflow: hidden;
+}
+
+#modalPost h3{
+  margin: 0;
+  padding: 22px 28px;
+  font-size: 42px;
+  font-weight: 800;
+  text-align: center;
+  border-bottom: 2px solid rgba(0,0,0,0.25);
+}
+
+#modalPost input,
+#modalPost textarea{
+  width: calc(100% - 56px);
+  margin: 18px 28px 0 28px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 2px solid rgba(0,0,0,0.20);
+  background: rgba(255,255,255,0.85);
+  font-size: 16px;
   box-sizing: border-box;
+  outline: none;
 }
 
-.modal h3 {
-  margin-top: 0;
+#modalPost textarea{
+  min-height: 120px;
+  resize: vertical;
 }
 
-.modal input,
-.modal textarea {
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-}
-
-.accionesModal {
+#modalPost .accionesModal{
   display: flex;
-  justify-content: flex-end;
-  gap: 5px;
-}
-#solicitudesPendientes {
-  margin-top: 10px;
-  background: #f1f1f1;
-  padding: 10px;
-  border-radius: 5px;
+  justify-content: center;
+  gap: 18px;
+  padding: 22px 28px 26px 28px;
+  border-top: 2px solid rgba(0,0,0,0.18);
+  margin-top: 18px;
 }
 
-.solicitud {
-  margin-bottom: 8px;
-  padding: 6px;
-  border-bottom: 1px solid #ccc;
-}
-
-.solicitud button {
-  margin-right: 5px;
-  padding: 4px 8px;
+#publicarPost{
+  width: 420px;
+  max-width: 70vw;
+  height: 64px;
+  border-radius: 40px;
+  border: 3px solid rgba(255,255,255,0.8);
+  background: rgba(170,160,170,0.95);
+  font-weight: 800;
+  font-size: 22px;
   cursor: pointer;
+}
+
+#cancelarPost{
+  height: 64px;
+  padding: 0 34px;
+  border-radius: 18px;
+  border: 2px solid rgba(255,255,255,0.7);
+  background: rgba(120,120,120,0.85);
+  color: white;
+  font-weight: 800;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#publicarPost:hover,
+#cancelarPost:hover{
+  transform: scale(1.02);
+}
+
+#barralateral{
+  z-index: 999;         
+}
+
+#contenido{
+  margin-left: 280px;  
+  z-index: 10;
 }

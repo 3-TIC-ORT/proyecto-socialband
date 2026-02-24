@@ -4,7 +4,7 @@ let nombre = document.getElementById("nombre");
 let edad = document.getElementById("edad");
 let genero = document.getElementById("genero");
 let instrumento = document.getElementById("instrumento");
-let generoMusical = document.getElementById("genero musical");
+let generoMusical = document.getElementById("generoMusical");
 
 let btnGuardar = document.getElementById("btnguardar");
 let btnDescartar = document.getElementById("btndescartar");
@@ -27,7 +27,7 @@ window.addEventListener("DOMContentLoaded", () => {
       edad.value = datos.edad || "";
       genero.value = datos.genero || "";
       instrumento.value = datos.instrumento || "";
-      generoMusical.value = datos["genero musical"] || "";
+      generoMusical.value = datos.generoMusical || "";
     } else {
       alert("No se pudieron cargar los datos del perfil.");
     }
@@ -49,7 +49,7 @@ btnGuardar.addEventListener("click", () => {
     edad: edad.value.trim(),
     genero: genero.value.trim(),
     instrumento: instrumento.value.trim(),
-    "genero musical": generoMusical.value.trim(),
+    generoMusical: generoMusical.value.trim(),
     contraseña: user.contraseña
   };
 

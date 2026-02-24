@@ -5,5 +5,11 @@
     "para": "a@gmail.com",
     "estado": "pendiente",
     "fecha": "19/11/2025, 09:01:05"
+  },
+  {
+    "id": 2,
+    "de": "carlosaura@gmail.com",
+    "para": "carlos@gmail.com",
+    "estado": "pendiente"
   }
 ]

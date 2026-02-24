@@ -1,48 +1,88 @@
 body {
-background-image: url("../Html/fotos/Group\ 22\ \(10\).jpg");
-background-size: cover;
+  margin: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
 
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-  }
-  
-  .contenedor {
-    text-align: center;
-    color: white;
-  }
-  
-  .logo {
-    width: 150px;
-    display: block;
-    margin: 0 auto 20px;
-  }
-  
-  h1 {
-    margin-bottom: 10px;
-    color: aliceblue;
-  }
-  
-  hr {
-    width: 200px;
-    border: 1px solid white;
-    margin: 10px auto 30px;
-  }
-  
-  button {
-    background-color: #c0bdbd;
-    border: none;
-    padding: 15px 60px;
-    font-size: 20px;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    transform: scale(1.05);
-  }
-  
+  background-image: url("../Html/fotos/Group 142.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo{
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.circulo{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(200,200,200,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4x; 
+}
+
+.circulo span{
+  color: #111 !important; 
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 1;
+}
+
+#Contenedor-inicio {
+  text-align: center;
+}
+
+.linea {
+  width: 600px;
+  max-width: 80%;
+  border: 2px solid white;
+  margin: 0 auto 40px auto;
+}
+ 
+#boton-entrar {
+  background: white;
+  color: black;
+  border: none;
+  padding: 18px 120px;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#boton-entrar:hover {
+  transform: scale(1.05);
+}
+* {
+  color: white !important;
+}
+
+#linea-inicio {
+  border: 2px solid white !important;
+}
+
+#boton-entrar {
+  background: white !important;
+  color: black !important;
+}
+.linea{
+  width: 600px;
+  max-width: 80%;
+  border: none;
+  height: 4px;
+  background: white;
+  margin: 25px auto 35px auto;
+}
+

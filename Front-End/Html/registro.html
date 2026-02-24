@@ -1,31 +1,46 @@
 <!DOCTYPE html>
-<html lang="ens">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Registrarse - Social Band</title>
-  <link rel="stylesheet" href="../Css/registro.css" />
+  <link rel="stylesheet" href="../Css/registro.css">
 </head>
 <body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+
+  <div class="overlay"></div>
+
+  <div class="logo">
+    <div class="circulo">
+      <span class="sb">SB</span>
+      <span class="diag"></span>
+    </div>
+  </div>
 
   <div class="formulario">
-    <h2>Registrarse</h2>
-    <form class="form"  action="login.html" id="registro" method="post">
-      <input type="text" id="nombre" placeholder="Nombre de usuario" required />
-      <input type="email" id="email" placeholder="Correo" required />
-      <input type="password" id="contraseña" placeholder="Contraseña" required />
-      <input type="password" id="repcontraseña" placeholder="Repite contraseña" required />
-      <input type="number" id="edad" placeholder="Edad" required />
-      <input type="text" id="instrumento" placeholder="Instrumento" required />
-      <input type="text" id="genero" placeholder="Género musical" required />
-      <button type="submit">Crear cuenta</button>
+    <h2>Crear Cuenta</h2>
+
+    <form id="registro">
+      <input type="text" id="nombre" placeholder="Nombre de usuario" required>
+      <input type="email" id="email" placeholder="Correo" required>
+      <input type="password" id="contraseña" placeholder="Contraseña" required>
+      <input type="password" id="repcontraseña" placeholder="Repetir contraseña" required>
+      <input type="number" id="edad" placeholder="Edad" required>
+      <input type="text" id="instrumento" placeholder="Instrumento" required>
+      <input type="text" id="genero" placeholder="Género musical" required>
+
+      <button type="submit">REGISTRARSE</button>
     </form>
-    <p><a href="login.html">¿Ya tenes cuenta? Inicia Sesion</a></p>
+
+    <p class="link">
+      ¿Ya tenes cuenta? <a href="login.html">Iniciar Sesión</a>
+    </p>
+
+    <p id="respuesta"></p>
   </div>
-  <p id="respuesta"></p>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
-<script type="module" src="../JS/registro.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/JZylber/SoqueTIC-Client@v1.4.2/soquetic-client.js"></script>
+  <script type="module" src="../JS/registro.js"></script>
+
 </body>
 </html>
